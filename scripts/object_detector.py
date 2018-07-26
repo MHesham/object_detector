@@ -8,8 +8,8 @@ from azure.cognitiveservices.vision.customvision.prediction.prediction_endpoint 
 from cv_bridge import CvBridge, CvBridgeError
 import cv2
 
-prediction_key = "YOUR_PREDICTION_KEY"
-project_id = "2a538b0b-5978-4bd4-9e62-f603c0f287e9"
+prediction_key = "YOUR_PROJECT_KEY"
+project_id = "YOUR_PROJECT_ID"
 prediction_threshold = .40
 od_loop_freq_hz = 2
 
@@ -41,7 +41,7 @@ def send_box_overlays(cv2_img, detected_objects_list):
 def od_loop():
 
     data = rospy.wait_for_message(
-        '/camera/rgb/image_raw', Image, timeout=5.0)
+        '/usb_cam/image_raw', Image)
 
     img_h, img_w = data.height, data.width
     rospy.logdebug('received frame hxw:%dx%d step:%d',
